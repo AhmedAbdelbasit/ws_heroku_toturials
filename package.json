@@ -1,7 +1,7 @@
 {
   "name": "ws_heroku_toturials",
   "version": "1.0.0",
-  "description": "",
+  "description": "this is an application based in tutorials found in this link: https://devcenter.heroku.com/articles/node-websockets",
   "main": "index.js",
   "scripts": {
     "start": "node server.js"
@@ -11,7 +11,7 @@
     "url": "git+https://github.com/AhmedAbdelbasit/ws_heroku_toturials.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "ahmed abdelbasit",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/AhmedAbdelbasit/ws_heroku_toturials/issues"

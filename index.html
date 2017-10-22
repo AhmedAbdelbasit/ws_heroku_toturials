@@ -5,8 +5,11 @@
 	</head>
 	<body>
 		<h1>Time is shown below </h1>
-		<hr></br><hr>
+		<hr>
 		<p id='server-time'></p>
+		<hr>
+		
+		
 		<script>
 			var HOST = location.origin.replace(/^https/, 'wss');
 			var ws = new WebSocket(HOST);
