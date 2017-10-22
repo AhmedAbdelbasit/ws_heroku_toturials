@@ -1,0 +1,29 @@
+{
+  "name": "ws_heroku_toturials",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhmedAbdelbasit/ws_heroku_toturials.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhmedAbdelbasit/ws_heroku_toturials/issues"
+  },
+  "homepage": "https://github.com/AhmedAbdelbasit/ws_heroku_toturials#readme",
+  "engines": {
+    "node": "6.2.0"
+  },
+  "dependencies": {
+    "bufferutil": "3.0.2",
+    "express": "4.16.2",
+    "utf-8-validate": "3.0.3",
+    "ws": "3.2.0"
+  }
+}
