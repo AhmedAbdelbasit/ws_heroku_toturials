@@ -1,16 +1,21 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <p id='server-time'></p>
-    <script>
-      var HOST = location.origin.replace('https://smart-home-try.herokuapp.com/', 'ws')
-      var ws = new WebSocket(HOST);
-      var el = document.getElementById('server-time');
-      ws.onmessage = function (event) {
-        el.innerHTML = 'Server time: ' + event.data;
-      };
-    </script>
-  </body>
+	<head>
+		<title> Heroku Websockets </title>
+	</head>
+	<body>
+		<h1>Time is shown below </h1>
+		<hr></br><hr>
+		<p id='server-time'></p>
+		<script>
+			var HOST = location.origin.replace('wss://smart-home-try.herokuapp.com/');
+			var ws = new WebSocket(HOST);
+			var el = document.getElementById('server-time');
+			ws.onmessage = function (event) {
+				el.innerHTML = 'Server time: ' + event.data;
+			};
+		</script>
+	</body>
 </html>
 
 
