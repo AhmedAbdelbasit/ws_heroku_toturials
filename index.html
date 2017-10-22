@@ -8,7 +8,7 @@
 		<hr></br><hr>
 		<p id='server-time'></p>
 		<script>
-			var HOST = location.origin.replace('wss://smart-home-try.herokuapp.com/');
+			var HOST = location.origin.replace('https://smart-home-try.herokuapp.com/');
 			var ws = new WebSocket(HOST);
 			var el = document.getElementById('server-time');
 			ws.onmessage = function (event) {
