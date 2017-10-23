@@ -2,15 +2,31 @@
 <html>
 	<head>
 		<title> Heroku Websockets </title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
+		<!--
+		
+		-->
 	</head>
 	<body>
-		<h1>Time is shown below </h1>
-		<hr>
-		<p id='server-time'></p>
-		<hr>
+		<div>
+		<table>
+			<tr >
+				<td>
+					<h1>Time is shown below </h1>
+					<hr>
+				</td>
+			</tr>
+			
+			<tr >
+				<td>
+					<p id='server-time'></p>
+					<hr>
+				</td>
+			</tr>
+		</table>
+		</div>
 		
-		
-		<script>
+		<script >
 			var HOST = location.origin.replace(/^https/, 'wss');
 			var ws = new WebSocket(HOST);
 			var el = document.getElementById('server-time');
@@ -20,5 +36,3 @@
 		</script>
 	</body>
 </html>
-
-
