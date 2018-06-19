@@ -26,7 +26,17 @@
 			}
 			
 			td{
-				width: 100%;
+				width: 50%;
+			}
+			
+			button{
+				box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+				width: 250px;
+				height: 50px;
+				font-size: 20px;
+				background-color: white;
+				color: black;
+				border: 2px solid #4CAF50; /* Green */
 			}
 		</style>
 	</head>
@@ -34,17 +44,28 @@
 		<div>
 		<table>
 			<tr >
-				<td>
+				<td colspan=2"2">
 					<h1>Time is shown below </h1>
 					<hr>
 				</td>
 			</tr>
 			
 			<tr >
-				<td>
+				<td colspan=2"2">
 					<p id='server-time'></p>
 					<hr>
 				</td>
+			</tr>
+			
+			<tr >
+				<td align="center">
+					<button onclick="turnOn()">Turn Light On</button>
+					<hr>
+				</td>
+				<td align="center">
+					<button onclick="turnOff()">Turn Light Off</button>
+					<hr>
+				</td >
 			</tr>
 		</table>
 		</div>
@@ -56,6 +77,18 @@
 			ws.onmessage = function (event) {
 				el.innerHTML = 'Server time: ' + event.data;
 			};
+			function turnOn() {
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=on", false ); // false for synchronous request
+				xmlHttp.send( null );			
+			}
+			
+			function turnOff() {
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=off", false ); // false for synchronous request
+				xmlHttp.send( null );			
+			}
+			
 		</script>
 	</body>
 </html>
