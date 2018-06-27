@@ -14,9 +14,29 @@ const server = express()
 const wss = new SocketServer({ server });
 
 wss.on('connection', (ws) => {
-  console.log('Client connected');
-  ws.on('close', () => console.log('Client disconnected'));
+	ws.on('message', function(msg) {
+		message = JSON.parse(msg);
+		if(message.cmd == "light"){
+			if(message.val == "on"){
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=on", false ); // false for synchronous request
+				xmlHttp.send( null );		
+			}else{
+				var xmlHttp = new XMLHttpRequest();
+				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=off", false ); // false for synchronous request
+				xmlHttp.send( null );
+			}
+		}else{
+			
+		}			
+		
+	});
+	
+	console.log('Client connected');
+	ws.on('close', () => console.log('Client disconnected'));
 });
+
+
 
 setInterval(() => {
   wss.clients.forEach((client) => {
