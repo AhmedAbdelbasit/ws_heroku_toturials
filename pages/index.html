@@ -100,6 +100,7 @@
 		
 		<script >
 			var HOST = location.origin.replace(/^https/, 'wss');
+			
 			var ws = new WebSocket(HOST);
 			var el = document.getElementById('server-time');
 			ws.onmessage = function (event) {
@@ -107,11 +108,6 @@
 			};
 			
 			function turnOn() {
-				// var xmlHttp = new XMLHttpRequest();
-				// xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=on", false ); // false for synchronous request
-				// xmlHttp.send( null );	
-				
-				//document.getElementById("lightState").style.fill = 'green';
 				ws.send(JSON.stringify({
 					cmd: "light",
 					val: "on"
@@ -120,50 +116,13 @@
 			}
 			
 			function turnOff() {
-				//var xmlHttp = new XMLHttpRequest();
-				//xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=off", false ); // false for synchronous request
-				//xmlHttp.send( null );				
-				
-				//document.getElementById("lightState").style.fill = 'red';
 				ws.send(JSON.stringify({
 					cmd: "light",
 					val: "off"
 				}));
 				document.getElementById("lightState").style.fill = 'red';
 			}
-			/*
 			
-			ws.onopen = function(){
-				if(AccountName != ""){
-					UserName = AccountName;
-					friendname = prompt('what is your friend username ?');
-					sock.send(JSON.stringify({
-						type: "open_chat",
-						fromname: AccountName.trim(),
-						toname: friendname
-					}));
-				}else{
-					window.location.replace("../home/login.php");
-				}
-			}
-			
-			sock.onmessage = function(event){
-				console.log(event);
-				var json = JSON.parse(event.data);
-				if(json.name=="You"){
-					log.innerHTML += ("<div style=\"display: inline; word-wrap: break-word; width: 180px; overflow-y: auto; border-radius: 15px; float: right; background: white; padding: 7px; border: solid 1px black;\"> <span style=\"color: red;\">"+ json.name +": "+ "<span style=\"color: blue;\"> "+json.data + "</span></div><br/><br/>");
-				}else{
-					log.innerHTML += ("<div style=\"display: inline; word-wrap: break-word; width: 180px; overflow-y: auto; border-radius: 15px; float: left;  background: yellow; padding: 7px; border: solid 1px black;\"> <span style=\"color: red;\">"+ json.name +": "+ "<span style=\"color: blue;\"> "+json.data + "</span></div><br/><br/>");
-				}
-				//word-break: break-all; word-wrap: break-word;
-				//log.innerHTML += '<div style="float: right;"> <span style="color: red;">'+ json.name +": "+ '<span style="color: blue;"> '+json.data + '</span></div>'+'<br/>';
-				$('#log').animate({scrollTop: $('#log').prop("scrollHeight")}, 10);
-				
-			}
-			
-			*/
-		
-		
 		</script>
 	</body>
 </html>
