@@ -14,13 +14,13 @@ const server = express()
 const wss = new SocketServer({ server });
 
 wss.on('connection', (ws) => {
-	ws.on('message', function(msg) {
+	wss.on('message', function(msg) {
 		message = JSON.parse(msg);
 		if(message.cmd == "light"){
 			if(message.val == "on"){
 				var xmlHttp = new XMLHttpRequest();
 				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=on", false ); // false for synchronous request
-				xmlHttp.send( null );		
+				xmlHttp.send( null );
 			}else{
 				var xmlHttp = new XMLHttpRequest();
 				xmlHttp.open( "GET", "https://dweet.io/dweet/for/home?light=off", false ); // false for synchronous request
