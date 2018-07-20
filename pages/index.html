@@ -136,6 +136,8 @@
 					el.innerHTML = 'Server time: ' + json.time;
 				}else if(json.cmd == "light_sen"){
 					document.getElementById("light_int").innerHTML = json.light_int + ' %';
+					var l = json.light_int * 255/100;
+					document.getElementById("vvv").style.fill = 'rgb('+l+','+l+','+l+')';
 				}
 			};
 			
