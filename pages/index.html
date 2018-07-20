@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title> Heroku Websockets </title>
+		<title> Smart Home Tech </title>
 		<link rel="stylesheet" type="text/css" href="/pages/style.css" />
 		<style>
 			p {
@@ -37,6 +37,13 @@
 				border: 2px solid #4CAF50; /* Green */
 			}
 			
+			label{
+				rgba(0,0,0,0.19);
+				font-size: 25px;
+				background-color: white;
+				color: black;
+			}
+			
 			input{
 				box-shadow: 0 8px 16px 0 rgba(0,0,0,0.1), 0 6px 20px 0 rgba(0,0,0,0.19);
 				width: 300px;
@@ -52,7 +59,7 @@
 		<table>
 			<tr >
 				<td colspan="3">
-					<h1>Time is shown below </h1>
+					<h1> Control Your Home </h1>
 					<hr>
 				</td>
 			</tr>
@@ -95,16 +102,41 @@
 				
 				
 			</tr>
+			<tr >
+				<td width="40%" align="center" background="black">
+					<label width="250px"> Light Intensity </label>
+					<hr>
+				</td>
+				<td width="20%" align="center">
+					<svg height="100" width="100" >
+						<circle id="vvv" cx="50" cy="40" r="20" stroke="black" stroke-width="2" fill="white" />
+					</svg>
+				</td>
+				<td width="40%" align="center">
+					<label id='light_int'></label>
+					<hr>
+				</td>
+				
+				
+			</tr>
 		</table>
 		</div>
 		
 		<script >
+			
+			
 			var HOST = location.origin.replace(/^https/, 'wss');
 			
 			var ws = new WebSocket(HOST);
-			var el = document.getElementById('server-time');
+			
 			ws.onmessage = function (event) {
-				el.innerHTML = 'Server time: ' + event.data;
+				var json = JSON.parse(event.data);
+				if(json.cmd == "time"){
+					var el = document.getElementById('server-time');
+					el.innerHTML = 'Server time: ' + json.time;
+				}else if(json.cmd == "light_sen"){
+					document.getElementById("light_int").innerHTML = json.light_int + ' %';
+				}
 			};
 			
 			function turnOn() {

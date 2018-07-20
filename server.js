@@ -17,17 +17,17 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
 	ws.on('message', function(msg) {
 		var message = JSON.parse(msg);
-		console.log(message.cmd);
+		//console.log(message.cmd);
 		if(message.cmd == "light"){
-			console.log(message.val);
+			console.log('cmd : light >> ' + message.val);
 			if(message.val == "on"){
-				https.get('https://dweet.io/dweet/for/home?light=on', (resp) => {
+				https.get('https://dweet.io/dweet/for/home_cmd?light=on', (resp) => {
 					
 				}).on("error", (err) => {
 					console.log("Error: " + err.message);
 				});
 			}else{
-				https.get('https://dweet.io/dweet/for/home?light=off', (resp) => {
+				https.get('https://dweet.io/dweet/for/home_cmd?light=off', (resp) => {
 					
 				}).on("error", (err) => {
 					console.log("Error: " + err.message);
@@ -46,10 +46,37 @@ wss.on('connection', (ws) => {
 
 
 setInterval(() => {
-  wss.clients.forEach((client) => {
-    client.send(new Date().toTimeString());
-  });
+	wss.clients.forEach((client) => {
+		//client.send(new Date().toTimeString());
+		client.send(JSON.stringify({
+			cmd: "time",
+			time: new Date().toTimeString()
+		}));
+	});
 }, 1000);
+
+setInterval(() => {
+	
+
+	https.get('https://dweet.io/get/latest/dweet/for/home_sen', (res) => {
+		//console.log('statusCode:', res.statusCode);
+		//console.log('headers:', res.headers);
+		res.setEncoding('utf8');
+		res.on('data', function(textChunk) {
+			var message = JSON.parse(textChunk);
+			//console.log(message.with[0].content.light_intensity)
+			wss.clients.forEach((client) => {
+				client.send(JSON.stringify({
+					cmd: "light_sen",
+					light_int:  message.with[0].content.light_intensity
+				}));
+			});
+		});
+	}).on("error", (err) => {
+		console.log("Error: " + err.message);
+	});
+	
+}, 2000);
 
 
 //var HOST = "ws://localhost:3000";
