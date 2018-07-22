@@ -1,6 +1,8 @@
 void loop() {
   delay(1000);
+  
   getFromDweet();
+  
   delay(1000);
   
   // Check HTTP status
@@ -40,11 +42,11 @@ void loop() {
 //  Serial.println(root["by"].as<char*>());
 //  Serial.println(root["the"].as<char*>());
 //  Serial.println(root["with"][0]["thing"].as<char*>());
-//  Serial.println(root["with"][0]["created"].as<char*>());
-  Serial.println(root["with"][0]["content"]["light"].as<char*>());
+  Serial.println(root["with"][0]["created"].as<char*>());
+//  Serial.println(root["with"][0]["content"]["light"].as<char*>());
 
   const char* lightState = root["with"][0]["content"]["light"].as<char*>();
-  Serial.println(lightState);
+//  Serial.println(lightState);
   if( strcmp(lightState, "off") == 0 ){
     Serial.println("Light turned Off");
     digitalWrite(14,LOW);
@@ -55,8 +57,11 @@ void loop() {
     Serial.println("Nothing dweeted");
     client.stop();
   }
-
+  
   delay(1000);
+//  client.stop();
+  delay(1000);
+  
   lightIntensity = analogRead(A0) * 100 / 1023;
   if(lightIntensity != lastLightIntensity){
     Serial.print("current intensity ");
@@ -68,4 +73,7 @@ void loop() {
     char c = client.read();
     Serial.write(c);
   }
+  
+  delay(1000);
+  client.stop();
 }

@@ -3,8 +3,8 @@
 #include <ESP8266WiFi.h>
 
 // Credentials
-char ssid[] = "ahmedpoto"; // your network SSID (name)
-char password[] = "password2020"; // your network password
+char ssid[] = "smart tech"; // your network SSID (name)
+char password[] = "12345678"; // your network password
 char server[] = "dweet.io";
 
 int status = WL_IDLE_STATUS; // the Wifi radio's status
